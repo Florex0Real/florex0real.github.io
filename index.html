@@ -294,6 +294,59 @@
                 font-size: 20px;
             }
         }
+
+        .questions-area {
+            margin-top: 20px;
+        }
+
+        .question-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .question-btn {
+            padding: 12px 15px;
+            background-color: #f1bbbf;
+            color: #594a4e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .question-btn:hover {
+            background-color: #ffadb3;
+            transform: translateX(5px);
+        }
+
+        /* Dark theme için */
+        .dark-theme .question-btn {
+            background-color: #4a4d57;
+            color: #e2e8f0;
+        }
+
+        .dark-theme .question-btn:hover {
+            background-color: #5a5d67;
+        }
+
+        /* Mobil uyumluluk için */
+        @media (max-width: 768px) {
+            .question-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .question-btn {
+                width: 100%;
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -301,10 +354,18 @@
     <div class="container">
         <div class="chat-container">
             <h1>Chat with K-ON! Bot</h1>
-            <div class="chat-box" id="chat-box"></div>
-            <div class="input-area">
-                <input type="text" id="user-input" placeholder="K-ON! hakkında bir şey sor...">
-                <button onclick="sendMessage()">Gönder</button>
+            <div class="chat-box" id="chat-box">
+                <!-- Mesajlar buraya gelecek -->
+            </div>
+            <div class="questions-area">
+                <h3>Sık Sorulan Sorular</h3>
+                <div class="question-buttons">
+                    <button class="question-btn" onclick="askQuestion('K-ON! anime konusu nedir?')">K-ON! anime konusu nedir?</button>
+                    <button class="question-btn" onclick="askQuestion('K-ON! karakterleri kimlerdir?')">K-ON! karakterleri kimlerdir?</button>
+                    <button class="question-btn" onclick="askQuestion('Hafif Müzik Kulübü nedir?')">Hafif Müzik Kulübü nedir?</button>
+                    <button class="question-btn" onclick="askQuestion('K-ON! kaç bölümdür?')">K-ON! kaç bölümdür?</button>
+                    <button class="question-btn" onclick="askQuestion('K-ON! müzikleri nelerdir?')">K-ON! müzikleri nelerdir?</button>
+                </div>
             </div>
         </div>
         
@@ -393,8 +454,38 @@
         });
 
         function askQuestion(question) {
-            document.getElementById('user-input').value = question;
-            sendMessage();
+            const chatBox = document.getElementById('chat-box');
+            
+            // Kullanıcı sorusunu ekle
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = question;
+            chatBox.appendChild(userMessage);
+            
+            // Otomatik scroll
+            chatBox.scrollTop = chatBox.scrollHeight;
+            
+            // Bot cevabını simüle et
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot-message';
+                botMessage.textContent = getBotResponse(question);
+                chatBox.appendChild(botMessage);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+        }
+
+        function getBotResponse(question) {
+            // Basit bir cevap sistemi
+            const responses = {
+                'K-ON! anime konusu nedir?': 'K-ON!, bir lisedeki Hafif Müzik Kulübü\'nün hikayesini anlatır. Ana karakterler Yui, Mio, Ritsu ve Tsumugi\'nin müzik yolculuğunu ve arkadaşlıklarını konu alır.',
+                'K-ON! karakterleri kimlerdir?': 'Ana karakterler: Yui Hirasawa (gitar), Mio Akiyama (bas gitar), Ritsu Tainaka (davul), Tsumugi Kotobuki (klavye) ve sonradan katılan Azusa Nakano (gitar).',
+                'Hafif Müzik Kulübü nedir?': 'Okulda pop müzik çalan bir kulüptür. Başta sadece 4 üyesi varken, sonradan Azusa\'nın katılımıyla 5 kişilik bir grup olurlar.',
+                'K-ON! kaç bölümdür?': 'K-ON! toplam 2 sezon ve bir film olmak üzere 39 bölüm + 1 filmden oluşur.',
+                'K-ON! müzikleri nelerdir?': 'En popüler şarkıları: "Fuwa Fuwa Time", "Don\'t Say Lazy", "GO! GO! MANIAC" ve "Listen!!"dir.'
+            };
+            
+            return responses[question] || 'Üzgünüm, bu soruya cevap veremiyorum.';
         }
 
         function toggleTheme() {
