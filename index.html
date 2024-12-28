@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-ON! Chatbot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffedf0;
+            margin: 0;
+            padding: 20px;
+            color: #594a4e;
+        }
+
+        .container {
+            display: flex;
+            gap: 25px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff6f7;
+            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.2);
+        }
+
+        .chat-container {
+            flex: 2;
+            padding: 25px;
+            border-radius: 12px;
+            background-color: #fff6f7;
+            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.2);
+        }
+
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            border: 1px solid #f1bbbf;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #f1bbbf;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+            color: #594a4e;
+            background-color: #ffffff;
+        }
+
+        #user-input:focus {
+            border-color: #ffadb3;
+            outline: none;
+        }
+
+        #user-input::placeholder {
+            color: #b4999d;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #f1bbbf;
+            color: #594a4e;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffadb3;
+        }
+
+        .questions-panel {
+            flex: 1;
+            padding: 25px;
+            border-radius: 12px;
+            background-color: #fff6f7;
+            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.2);
+        }
+
+        .question-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            border: 1px solid #f1bbbf;
+            color: #594a4e;
+        }
+
+        .question-item:hover {
+            background-color: #ffedf0;
+            border-color: #f1bbbf;
+            transform: translateX(5px);
+        }
+
+        h1, h2, h3 {
+            color: #594a4e;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            padding: 12px 15px;
+            margin: 8px 0;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .user-message {
+            background-color: #f1bbbf;
+            margin-left: auto;
+            color: #594a4e;
+        }
+
+        .bot-message {
+            background-color: #ffd6d9;
+            color: #594a4e;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #fff6f7;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f1bbbf;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffadb3;
+        }
+
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f1bbbf;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-switch i {
+            color: #594a4e;
+            font-size: 24px;
+        }
+
+        /* Koyu tema için stiller */
+        body.dark-theme {
+            background-color: #2d2e32;
+            color: #e2e8f0;
+            transition: all 0.5s ease;
+        }
+
+        .dark-theme .container,
+        .dark-theme .chat-container,
+        .dark-theme .questions-panel {
+            background-color: #373a41;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-theme .chat-box {
+            background-color: #2d2e32;
+            border-color: #4a4d57;
+        }
+
+        .dark-theme .question-item {
+            background-color: #2d2e32;
+            border-color: #4a4d57;
+            color: #e2e8f0;
+        }
+
+        .dark-theme .question-item:hover {
+            background-color: #373a41;
+        }
+
+        .dark-theme .user-message {
+            background-color: #4a4d57;
+            color: #e2e8f0;
+        }
+
+        .dark-theme .bot-message {
+            background-color: #373a41;
+            color: #e2e8f0;
+        }
+
+        .dark-theme #user-input {
+            background-color: #2d2e32;
+            border-color: #4a4d57;
+            color: #e2e8f0;
+        }
+
+        .dark-theme #user-input::placeholder {
+            color: #8b8d95;
+        }
+
+        .dark-theme button {
+            background-color: #4a4d57;
+            color: #e2e8f0;
+        }
+
+        .dark-theme button:hover {
+            background-color: #5a5d67;
+        }
+
+        .dark-theme .theme-switch {
+            background-color: #4a4d57;
+        }
+
+        .dark-theme .theme-switch i {
+            color: #e2e8f0;
+        }
+
+        /* Animasyon için */
+        @keyframes themeChange {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .theme-changing {
+            animation: themeChange 0.5s ease;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <h1>Chat with K-ON! Bot</h1>
+            <div class="chat-box" id="chat-box"></div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="K-ON! hakkında bir şey sor...">
+                <button onclick="sendMessage()">Gönder</button>
+            </div>
+        </div>
+        
+        <div class="questions-panel">
+            <h2>Örnek Sorular</h2>
+            <div class="question-item" onclick="askQuestion('k-on nedir')">K-ON! nedir?</div>
+            <div class="question-item" onclick="askQuestion('ana karakterler kimler')">Ana karakterler kimler?</div>
+            <div class="question-item" onclick="askQuestion('hangi enstrümanları çalıyorlar')">Hangi enstrümanları çalıyorlar?</div>
+            <div class="question-item" onclick="askQuestion('hokago tea time nedir')">Hokago Tea Time nedir?</div>
+            <div class="question-item" onclick="askQuestion('sawako kimdir')">Sawako kimdir?</div>
+            <div class="question-item" onclick="askQuestion('hangi şarkıları çalıyorlar')">Hangi şarkıları çalıyorlar?</div>
+            <div class="question-item" onclick="askQuestion('hangi okula gidiyorlar')">Hangi okula gidiyorlar?</div>
+
+            <h3>Diğer Sayfalar</h3>
+            <div class="question-item" onclick="window.location.href='episodes.html'">Bölüm Listesini Görüntüle →</div>
+            <div class="question-item" onclick="window.location.href='manga.html'">Manga Serilerini Görüntüle →</div>
+        </div>
+    </div>
+
+    <div class="theme-switch" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        const responses = {
+            "ana karakterler kimler": "K-ON!'un ana karakterleri Yui Hirasawa, Mio Akiyama, Ritsu Tainaka, Tsumugi Kotobuki ve Azusa Nakano'dur. Hep birlikte 'Ho-kago Tea Time' adlı grubu oluştururlar!",
+            
+            "hangi enstrümanları çalıyorlar": "Yui gitar (Giita) çalar, Mio bas gitar çalar, Ritsu bateri çalar, Mugi klavye çalar ve Azusa gitar çalar!",
+            
+            "k-on nedir": "K-ON!, okullarının hafif müzik kulübüne katılıp birlikte grup kuran beş liseli kızın hikayesini anlatan bir anime. Günlük yaşamlarını, dostluklarını ve müzisyen olarak gelişimlerini konu alır!",
+            
+            "k-on ne demek": "K-ON! (けいおん!) Japonca'da 'Keion' yani 'hafif müzik' anlamına gelir!",
+            
+            "yui kimdir": "Yui Hirasawa, baş karakter, başlangıçta müzikle hiç ilgisi olmayan şirin ve daınık bir kızdır. Gitarı (Giita) çok sever ve zamanla müzikte ustalaşır!",
+            
+            "mio kimdir": "Mio Akiyama, utangaç ama çok yetenekli bas gitaristtir. Şarkı sözü yazmada yeteneklidir ama sahne korkusu vardır. Ritsu'nun en yakın arkadaşıdır.",
+            
+            "hangi şarkıları çalıyorlar": "Ho-kago Tea Time'ın en ünlü şarkıları arasında 'Fuwa Fuwa Time', 'Don't Say Lazy', 'Go! Go! Maniac' ve 'U&I' bulunur!",
+            
+            "nerede çalışıyorlar": "Kız grubu genellikle okulun müzik kulübü odasında pratik yapar. Oda aynı zamanda çay içip kek yedikleri sosyal alanlarıdır!",
+            
+            "sawako kimdir": "Sawako Yamanaka, grubun danışman öğretmenidir. Eskiden metal müzik yapan bir grup üyesiydi. Şimdi kızlara rehberlik ediyor!",
+            
+            "hokago tea time nedir": "Ho-kago Tea Time (Okul Sonrası Çay Vakti), kızların kurdukları grubun adıdır. İsim, okul sonrası müzik kulübünde çay içme alışkanlıklarından gelir!",
+            
+            "hangi okula gidiyorlar": "Kızlar Sakuragaoka Kız Lisesi'ne giderler. Okulun müzik kulübünü canlandırıp popüler hale getirirler!",
+            
+            "ritsu kimdir": "Ritsu Tainaka, grubun enerjik ve şakacı bateristi ve aynı zamanda kulüp başkanıdır. Mio'nun çocukluk arkadaşıdır ve genellikle grubun neşe kaynağıdır!",
+            
+            "mugi kimdir": "Tsumugi (Mugi) Kotobuki, zengin bir aileden gelen nazik ve tatlı klavyecisidir. Her gün kulübe lezzetli tatlılar ve çay getirir. Sıradan hayata karşı büyük bir merakı vardır!",
+            
+            "azusa kimdir": "Azusa Nakano, gruba sonradan katılan yetenekli gitaristtir. Diğerlerinden bir yaş küçüktür ve bazen grubun dağınık çalışma tarzından şikayet etse de hepsini çok sever!"
+        };
+
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            const userMessage = input.value.toLowerCase();
+
+            // Display user message
+            chatBox.innerHTML += `<div class="message user-message">${input.value}</div>`;
+
+            // Bot response
+            let botResponse = "I'm sorry, I don't know about that. Try asking about the main characters, their instruments, or what K-ON! is about!";
+            for (let key in responses) {
+                if (userMessage.includes(key)) {
+                    botResponse = responses[key];
+                    break;
+                }
+            }
+
+            // Display bot message
+            setTimeout(() => {
+                chatBox.innerHTML += `<div class="message bot-message">${botResponse}</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+
+            input.value = '';
+        }
+
+        // Allow Enter key to send message
+        document.getElementById('user-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function askQuestion(question) {
+            document.getElementById('user-input').value = question;
+            sendMessage();
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeSwitch = document.querySelector('.theme-switch');
+            const icon = themeSwitch.querySelector('i');
+            
+            body.classList.add('theme-changing');
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                body.classList.add('dark-theme');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+
+            // Animasyon bitince class'ı kaldır
+            setTimeout(() => {
+                body.classList.remove('theme-changing');
+            }, 500);
+
+            // Tema tercihini localStorage'a kaydet
+            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        // Sayfa yüklendiğinde tema tercihini kontrol et
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-switch i').classList.remove('fa-moon');
+                document.querySelector('.theme-switch i').classList.add('fa-sun');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-ON! Manga</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffedf0;
+            margin: 0;
+            padding: 20px;
+            color: #594a4e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 12px;
+            background-color: #fff6f7;
+            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.2);
+        }
+
+        .manga-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .manga-card {
+            background-color: #ffffff;
+            border: 1px solid #f1bbbf;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .manga-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffadb3;
+            box-shadow: 0 5px 15px rgba(241, 187, 191, 0.3);
+        }
+
+        .manga-title {
+            font-size: 1.2em;
+            color: #e85a70;
+            margin-bottom: 10px;
+        }
+
+        .manga-description {
+            color: #594a4e;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .series-title {
+            color: #e2e8f0;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3b82f6;
+        }
+
+        .nav-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #f1bbbf;
+            color: #594a4e;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #ffadb3;
+            transform: translateX(5px);
+        }
+
+        h1, h2, h3 {
+            color: #594a4e;
+            border-bottom: 2px solid #f1bbbf;
+            padding-bottom: 10px;
+        }
+
+        .theme-switch {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f1bbbf;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-switch i {
+            color: #594a4e;
+            font-size: 24px;
+        }
+
+        /* Koyu tema için stiller */
+        body.dark-theme {
+            background-color: #2d2e32;
+            color: #e2e8f0;
+            transition: all 0.5s ease;
+        }
+
+        .dark-theme .container {
+            background-color: #373a41;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-theme .manga-card {
+            background-color: #2d2e32;
+            border-color: #4a4d57;
+            color: #e2e8f0;
+        }
+
+        .dark-theme .manga-card:hover {
+            border-color: #5a5d67;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-theme .manga-title {
+            color: #f1bbbf;
+        }
+
+        .dark-theme .manga-description {
+            color: #e2e8f0;
+        }
+
+        .dark-theme .nav-button {
+            background-color: #4a4d57;
+            color: #e2e8f0;
+        }
+
+        .dark-theme .nav-button:hover {
+            background-color: #5a5d67;
+        }
+
+        .dark-theme h1,
+        .dark-theme h2,
+        .dark-theme h3 {
+            color: #e2e8f0;
+            border-bottom-color: #4a4d57;
+        }
+
+        .dark-theme .theme-switch {
+            background-color: #4a4d57;
+        }
+
+        .dark-theme .theme-switch i {
+            color: #e2e8f0;
+        }
+
+        /* Animasyon için */
+        @keyframes themeChange {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .theme-changing {
+            animation: themeChange 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="nav-button">← Ana Sayfaya Dön</a>
+        <h1>K-ON! Manga Serileri</h1>
+
+        <h2 class="series-title">K-ON! High School</h2>
+        <div class="manga-list">
+            <div class="manga-card">
+                <div class="manga-title">K-ON! High School</div>
+                <div class="manga-description">
+                    Azusa, Jun ve Ui'nin lise maceralarını konu alan seri.
+                </div>
+                <a href="high_school.html" class="nav-button">Bölümleri Görüntüle →</a>
+            </div>
+            <!-- Diğer manga bölümleri buraya eklenecek -->
+        </div>
+
+        <h2 class="series-title">K-ON! College</h2>
+        <div class="manga-list">
+            <div class="manga-card">
+                <div class="manga-title">K-ON! College</div>
+                <div class="manga-description">
+                    Yui, Mio, Ritsu ve Mugi'nin üniversite yaşamlarını anlatan seri.
+                </div>
+                <a href="after_college.html" class="nav-button">Bölümleri Görüntüle →</a>
+            </div>
+            <!-- Diğer manga bölümleri buraya eklenecek -->
+        </div>
+    </div>
+
+    <div class="theme-switch" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeSwitch = document.querySelector('.theme-switch');
+            const icon = themeSwitch.querySelector('i');
+            
+            body.classList.add('theme-changing');
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                body.classList.add('dark-theme');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+
+            setTimeout(() => {
+                body.classList.remove('theme-changing');
+            }, 500);
+
+            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-switch i').classList.remove('fa-moon');
+                document.querySelector('.theme-switch i').classList.add('fa-sun');
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-ON! High School Manga</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffedf0;
+            margin: 0;
+            padding: 20px;
+            color: #594a4e;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 12px;
+            background-color: #fff6f7;
+            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.2);
+        }
+    
+        .manga-list, .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+    
+        .manga-card, .chapter-card {
+            background-color: #ffffff;
+            border: 1px solid #f1bbbf;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+    
+        .manga-card:hover, .chapter-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffadb3;
+        }
+    
+        .manga-title, .chapter-title {
+            font-size: 1.2em;
+            color: #e85a70;
+            margin-bottom: 10px;
+        }
+    
+        .manga-description, .chapter-info {
+            color: #594a4e;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+    
+        .nav-button, .read-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f1bbbf;
+            color: #594a4e;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+    
+        .nav-button:hover, .read-button:hover {
+            background-color: #ffadb3;
+        }
+    
+        .manga-info {
+            background-color: #ffffff;
+            border: 1px solid #f1bbbf;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    
+        h1, h2, h3 {
+            color: #594a4e;
+        }
+    </style> 
+</head>
+<body>
+    <div class="container">
+        <a href="manga.html" class="nav-button">← Manga Sayfasına Dön</a>
+        
+        <h1>K-ON! High School</h1>
+        
+        <div class="manga-info">
+            <h2>Seri Hakkında</h2>
+            <p>K-ON! High School, Azusa, Jun ve Ui'nin Sakuragaoka Kız Lisesi'ndeki yeni müzik kulübü maceralarını konu alan bir manga serisidir. Azusa artık kulübün başkanı olarak yeni üyeler bulmaya ve kulübü devam ettirmeye çalışır.</p>
+        </div>
+
+        <div class="chapter-grid">
+            <div class="chapter-card">
+                <div class="chapter-title">Bölüm 1</div>
+                <div class="chapter-info">
+                    Yeni dönem başlıyor! Azusa, Jun ve Ui yeni müzik kulübünü kurmak için harekete geçiyor.
+                </div>
+                <a href="manga/highschool/chapter01.pdf" class="read-button">Oku</a>
+            </div>
+            <!-- Diğer bölümler için benzer kartlar eklenecek -->
+        </div>
+    </div>
+</body>
+</html> 
