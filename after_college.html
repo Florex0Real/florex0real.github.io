@@ -5,12 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K-ON! College Manga</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ffedf0;
-            margin: 0;
-            padding: 20px;
-            color: #594a4e;
+         body {
+            background-color: white;
+            color: black;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background: #f0f0f0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dark-theme .theme-switch {
+            background: #333;
+            color: white;
+        }
+
+        /* Koyu tema için ek stiller */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: white;
+        }
+
+        .dark-theme a {
+            color: #66b3ff;
+        }
+
+        .dark-theme header {
+            background-color: #333;
+        }
+
+        .dark-theme footer {
+            background-color: #333;
         }
     
         .container {
