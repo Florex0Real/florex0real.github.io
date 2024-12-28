@@ -5,169 +5,205 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>K-ON! College Manga</title>
     <style>
-         body {
-            background-color: white;
-            color: black;
-            transition: all 0.3s ease;
+    .body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #ffedf0;
+        margin: 0;
+        padding: 20px;
+        color: #594a4e;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 25px;
+        border-radius: 12px;
+        background-color: #fff6f7;
+        box-shadow: 0 2px 10px rgba(241, 187, 191, 0.2);
+    }
+
+    .manga-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px 0;
+    }
+
+    .manga-card {
+        background-color: #ffffff;
+        border: 1px solid #f1bbbf;
+        border-radius: 8px;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .manga-card:hover {
+        transform: translateY(-5px);
+        border-color: #ffadb3;
+        box-shadow: 0 5px 15px rgba(241, 187, 191, 0.3);
+    }
+
+    .manga-title {
+        font-size: 1.2em;
+        color: #e85a70;
+        margin-bottom: 10px;
+    }
+
+    .manga-description {
+        color: #594a4e;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    .series-title {
+        color: #e2e8f0;
+        margin: 30px 0 15px 0;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #3b82f6;
+    }
+
+    .nav-button {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #f1bbbf;
+        color: #594a4e;
+        text-decoration: none;
+        border-radius: 8px;
+        margin: 10px 0;
+        transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+        background-color: #ffadb3;
+        transform: translateX(5px);
+    }
+
+    h1, h2, h3 {
+        color: #594a4e;
+        border-bottom: 2px solid #f1bbbf;
+        padding-bottom: 10px;
+    }
+
+    .theme-switch {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #f1bbbf;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(241, 187, 191, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .theme-switch:hover {
+        transform: scale(1.1);
+    }
+
+    .theme-switch i {
+        color: #594a4e;
+        font-size: 24px;
+    }
+
+    /* Koyu tema için stiller */
+    body.dark-theme {
+        background-color: #2d2e32;
+        color: #e2e8f0;
+        transition: all 0.5s ease;
+    }
+
+    .dark-theme .container {
+        background-color: #373a41;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .dark-theme .manga-card {
+        background-color: #2d2e32;
+        border-color: #4a4d57;
+        color: #e2e8f0;
+    }
+
+    .dark-theme .manga-card:hover {
+        border-color: #5a5d67;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .dark-theme .manga-title {
+        color: #f1bbbf;
+    }
+
+    .dark-theme .manga-description {
+        color: #e2e8f0;
+    }
+
+    .dark-theme .nav-button {
+        background-color: #4a4d57;
+        color: #e2e8f0;
+    }
+
+    .dark-theme .nav-button:hover {
+        background-color: #5a5d67;
+    }
+
+    .dark-theme h1,
+    .dark-theme h2,
+    .dark-theme h3 {
+        color: #e2e8f0;
+        border-bottom-color: #4a4d57;
+    }
+
+    .dark-theme .theme-switch {
+        background-color: #4a4d57;
+    }
+
+    .dark-theme .theme-switch i {
+        color: #e2e8f0;
+    }
+
+    /* Animasyon için */
+    @keyframes themeChange {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    .theme-changing {
+        animation: themeChange 0.5s ease;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            margin: 10px;
+            padding: 15px;
         }
 
-        body.dark-theme {
-            background-color: #1a1a1a;
-            color: white;
+        .manga-list {
+            grid-template-columns: 1fr;
+        }
+
+        .manga-card {
+            padding: 15px;
+        }
+
+        .nav-button {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
         }
 
         .theme-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            background: #f0f0f0;
             width: 40px;
             height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            bottom: 15px;
+            right: 15px;
         }
-
-        .dark-theme .theme-switch {
-            background: #333;
-            color: white;
-        }
-
-        /* Koyu tema için ek stiller */
-        body.dark-theme {
-            background-color: #1a1a1a;
-            color: white;
-        }
-
-        .dark-theme a {
-            color: #66b3ff;
-        }
-
-        .dark-theme header {
-            background-color: #333;
-        }
-
-        .dark-theme footer {
-            background-color: #333;
-        }
-    
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 25px;
-            border-radius: 12px;
-            background-color: #fff6f7;
-            box-shadow: 0 2px 10px rgba(241, 187, 191, 0.2);
-        }
-    
-        .manga-list, .chapter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px 0;
-        }
-    
-        .manga-card, .chapter-card {
-            background-color: #ffffff;
-            border: 1px solid #f1bbbf;
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-    
-        .manga-card:hover, .chapter-card:hover {
-            transform: translateY(-5px);
-            border-color: #ffadb3;
-        }
-    
-        .manga-title, .chapter-title {
-            font-size: 1.2em;
-            color: #e85a70;
-            margin-bottom: 10px;
-        }
-    
-        .manga-description, .chapter-info {
-            color: #594a4e;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-    
-        .nav-button, .read-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #f1bbbf;
-            color: #594a4e;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background-color 0.3s;
-        }
-    
-        .nav-button:hover, .read-button:hover {
-            background-color: #ffadb3;
-        }
-    
-        .manga-info {
-            background-color: #ffffff;
-            border: 1px solid #f1bbbf;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-    
-        h1, h2, h3 {
-            color: #594a4e;
-        }
-    
-        @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                padding: 15px;
-            }
-    
-            .chapter-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-    
-            .chapter-card {
-                padding: 15px;
-                margin-bottom: 10px;
-            }
-    
-            .chapter-title {
-                font-size: 1.1em;
-            }
-    
-            .manga-info {
-                padding: 15px;
-                margin-bottom: 15px;
-            }
-    
-            .read-button,
-            .nav-button {
-                width: 100%;
-                text-align: center;
-                box-sizing: border-box;
-                padding: 12px 15px;
-            }
-    
-            .theme-switch {
-                width: 40px;
-                height: 40px;
-                bottom: 15px;
-                right: 15px;
-            }
-    
-            h1, h2, h3 {
-                font-size: 1.3em;
-                margin: 10px 0;
-            }
-        }
-    </style> 
+    }
+</style>
 </head>
 <body>
     <div class="container">
@@ -194,5 +230,44 @@
     <div class="theme-switch" onclick="toggleTheme()">
         <i class="fas fa-moon"></i>
     </div>
+
+    <div class="theme-switch" onclick="toggleTheme()">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeSwitch = document.querySelector('.theme-switch');
+            const icon = themeSwitch.querySelector('i');
+            
+            body.classList.add('theme-changing');
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                body.classList.add('dark-theme');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+
+            setTimeout(() => {
+                body.classList.remove('theme-changing');
+            }, 500);
+
+            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-switch i').classList.remove('fa-moon');
+                document.querySelector('.theme-switch i').classList.add('fa-sun');
+            }
+        });
+    </script>
 </body>
 </html> 
