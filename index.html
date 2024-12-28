@@ -466,17 +466,6 @@
 <body>
     <div class="container">
         <div class="chat-container">
-            <div id="userStatusContainer">
-                <div id="userInfo" style="display: none;">
-                    <span class="welcome-text">Hoş geldin, <span id="userName"></span>!</span>
-                    <button onclick="logout()" class="auth-btn">Çıkış Yap</button>
-                </div>
-                
-                <div id="loginPrompt">
-                    <button onclick="window.location.href='login.php'" class="auth-btn">Giriş Yap</button>
-                    <button onclick="window.location.href='register.php'" class="auth-btn">Kayıt Ol</button>
-                </div>
-            </div>
             
             <h1>K-ON! Bot</h1>
             <div class="chat-box" id="chat-box">
@@ -646,45 +635,6 @@
                 document.querySelector('.theme-switch i').classList.add('fa-sun');
             }
         });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const userInfo = document.getElementById('userInfo');
-            const loginPrompt = document.getElementById('loginPrompt');
-            const userName = document.getElementById('userName');
-
-            function checkLoginStatus() {
-                const activeUser = localStorage.getItem('activeUser');
-                
-                if (activeUser) {
-                    try {
-                        const user = JSON.parse(activeUser);
-                        // Kullanıcı giriş yapmışsa
-                        userInfo.style.display = 'flex';
-                        loginPrompt.style.display = 'none';
-                        userName.textContent = user.name;
-                    } catch (e) {
-                        console.error('JSON parse hatası:', e);
-                        showLoginPrompt();
-                    }
-                } else {
-                    // Kullanıcı giriş yapmamışsa
-                    showLoginPrompt();
-                }
-            }
-
-            function showLoginPrompt() {
-                userInfo.style.display = 'none';
-                loginPrompt.style.display = 'flex';
-            }
-
-            // Sayfa yüklendiğinde kontrol et
-            checkLoginStatus();
-        });
-
-        function logout() {
-            localStorage.removeItem('activeUser');
-            location.reload();
-        }
     </script>
 
 
