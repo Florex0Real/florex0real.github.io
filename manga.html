@@ -176,6 +176,34 @@
         .theme-changing {
             animation: themeChange 0.5s ease;
         }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .manga-list {
+                grid-template-columns: 1fr;
+            }
+
+            .manga-card {
+                padding: 15px;
+            }
+
+            .nav-button {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
+            .theme-switch {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
     </style>
 </head>
 <body>

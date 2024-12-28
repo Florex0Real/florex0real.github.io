@@ -246,6 +246,54 @@
         .theme-changing {
             animation: themeChange 0.5s ease;
         }
+
+        /* Mobil uyumluluk için medya sorguları */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 15px;
+                margin: 10px;
+            }
+
+            .chat-container, 
+            .questions-panel {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .chat-box {
+                height: 350px;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            .input-area {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            #user-input {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .theme-switch {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .theme-switch i {
+                font-size: 20px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>

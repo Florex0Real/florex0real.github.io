@@ -79,6 +79,52 @@
         h1, h2, h3 {
             color: #594a4e;
         }
+    
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+    
+            .chapter-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+    
+            .chapter-card {
+                padding: 15px;
+                margin-bottom: 10px;
+            }
+    
+            .chapter-title {
+                font-size: 1.1em;
+            }
+    
+            .manga-info {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+    
+            .read-button,
+            .nav-button {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 12px 15px;
+            }
+    
+            .theme-switch {
+                width: 40px;
+                height: 40px;
+                bottom: 15px;
+                right: 15px;
+            }
+    
+            h1, h2, h3 {
+                font-size: 1.3em;
+                margin: 10px 0;
+            }
+        }
     </style> 
 </head>
 <body>
