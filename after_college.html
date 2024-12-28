@@ -206,48 +206,7 @@
 </style>
 </head>
 <body>
-    <div class="theme-switch" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-    </div>
-
-    <div class="theme-switch" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-    </div>
-
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const themeSwitch = document.querySelector('.theme-switch');
-            const icon = themeSwitch.querySelector('i');
-            
-            body.classList.add('theme-changing');
-            
-            if (body.classList.contains('dark-theme')) {
-                body.classList.remove('dark-theme');
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            } else {
-                body.classList.add('dark-theme');
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-
-            setTimeout(() => {
-                body.classList.remove('theme-changing');
-            }, 500);
-
-            localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                document.querySelector('.theme-switch i').classList.remove('fa-moon');
-                document.querySelector('.theme-switch i').classList.add('fa-sun');
-            }
-        });
-    </script>
+    
     <div class="container">
         <a href="manga.html" class="nav-button">← Manga Sayfasına Dön</a>
         
@@ -266,6 +225,48 @@
                 </div>
                 <a href="manga/college/chapter01.pdf" class="read-button">Oku</a>
             </div>
+            <div class="theme-switch" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </div>
+        
+            <div class="theme-switch" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </div>
+        
+            <script>
+                function toggleTheme() {
+                    const body = document.body;
+                    const themeSwitch = document.querySelector('.theme-switch');
+                    const icon = themeSwitch.querySelector('i');
+                    
+                    body.classList.add('theme-changing');
+                    
+                    if (body.classList.contains('dark-theme')) {
+                        body.classList.remove('dark-theme');
+                        icon.classList.remove('fa-sun');
+                        icon.classList.add('fa-moon');
+                    } else {
+                        body.classList.add('dark-theme');
+                        icon.classList.remove('fa-moon');
+                        icon.classList.add('fa-sun');
+                    }
+        
+                    setTimeout(() => {
+                        body.classList.remove('theme-changing');
+                    }, 500);
+        
+                    localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+                }
+        
+                document.addEventListener('DOMContentLoaded', () => {
+                    const savedTheme = localStorage.getItem('theme');
+                    if (savedTheme === 'dark') {
+                        document.body.classList.add('dark-theme');
+                        document.querySelector('.theme-switch i').classList.remove('fa-moon');
+                        document.querySelector('.theme-switch i').classList.add('fa-sun');
+                    }
+                });
+            </script>
             <!-- Diğer bölümler için benzer kartlar eklenecek -->
         </div>
     </div>
