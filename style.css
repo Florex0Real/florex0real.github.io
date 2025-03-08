@@ -686,4 +686,54 @@ h1 {
 .tech-tag:hover {
     background: rgba(29, 185, 84, 0.3);
     transform: translateY(-2px);
-} 
+}
+
+/* Mobil uyumlu ayarlar */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;  /* Daha az padding */
+    }
+
+    .main-content {
+        width: 100%;  /* Ana içeriği tam genişlikte yap */
+    }
+
+    .skills-panel {
+        width: 100%;  /* Sol paneli tam genişlikte yap */
+        position: relative;  /* Sabit pozisyonu kaldır */
+        bottom: auto;  /* Alt mesafeyi kaldır */
+        margin-bottom: 20px;  /* Alt boşluk ekle */
+    }
+
+    .content-box {
+        padding: 10px;  /* İçerik kutusunun padding'ini azalt */
+    }
+
+    .skills-text {
+        font-size: 14px;  /* Yazı boyutunu küçült */
+    }
+
+    .links {
+        flex-direction: column;  /* Linkleri dikey hizala */
+        gap: 10px;  /* Boşluğu artır */
+    }
+
+    .link-button {
+        width: 40px;  /* Düğme genişliğini azalt */
+        height: 40px;  /* Düğme yüksekliğini azalt */
+    }
+
+    .profile-img {
+        width: 50px;  /* Profil resmini küçült */
+        height: 50px;  /* Profil resmini küçült */
+    }
+
+    h1 {
+        font-size: 18px;  /* Başlık boyutunu küçült */
+    }
+
+    .bio-text {
+        font-size: 14px;  /* Biyografi metnini küçült */
+    }
+}
+
