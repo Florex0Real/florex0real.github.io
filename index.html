@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benim Bio Sayfam</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <!-- Sol panel -->
+        <div class="skills-panel" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <div class="status-header">
+                <i class="fas fa-code"></i>
+                <span>Skills</span>
+            </div>
+            <div class="skills-text">
+                <span>HTML</span> • <span>CSS</span> • <span>JavaScript</span><br>
+                <span>Python</span> • <span>C#</span> • <span>C++</span><br>
+                <span>Lua</span>
+            </div>
+        </div>
+        <!-- Ana içerik -->
+        <div class="main-content">
+            <div class="content-box" data-tilt data-tilt-max="5" data-tilt-speed="400">
+                <div class="banner">
+                    COOL ASS BIO
+                </div>
+                
+                <img src="img/mio.jpeg" alt="Profil Fotoğrafı" class="profile-img">
+                <h1>Florex</h1>
+                <p class="bio-text">Im Not A Gooner</p>
+                
+                <div class="links">
+                    <a href="#" class="link-button">
+                        <img src="img/instagram.png" alt="Instagram" class="icon">
+                    </a>
+                    <a href="#" class="link-button">
+                        <img src="img/steam.png" alt="Steam" class="icon">
+                    </a>
+                    <a href="https://open.spotify.com/user/31lq2s2amihntqdqeqiaitlrnpia?si=49661b5ade4b4a32" target="_blank" class="link-button">
+                        <img src="img/spotify.png" alt="Spotify" class="icon">
+                    </a>
+                </div>
+            </div>
+            <div class="status-container">
+                <!-- Discord Status -->
+                <div class="discord-status">
+                    <div class="status-header">
+                        <img src="img/discord.png" alt="Discord" class="discord-logo">
+                    </div>
+                    <a href="https://discord.com/users/1251242341285630122" target="_blank" class="discord-profile">
+                        <img id="discord-avatar" src="img/mio.jpeg" alt="Discord Avatar">
+                        <span class="username">florex0real</span>
+                        <span class="status online"></span>
+                    </a>
+                </div>
+                
+                <div class="music-player">
+                    <div class="status-header">
+                        <i class="fas fa-music"></i>
+                        <span>Now Playing</span>
+                    </div>
+                    <div class="player-content">
+                        <audio id="bgMusic" loop>
+                            <source src="music/lofi.mp3" type="audio/mp3">
+                        </audio>
+                        <div class="song-info">
+                            <img src="https://static.zerochan.net/K-ON%21.full.271920.jpg" alt="Album Art" class="album-art">
+                            <div class="track-details">
+                                <div class="song-name">Watashi no Koi Wa HOTCHKISS | K-ON! Remix by Hajilo | lofi</div>
+                                <div class="artist-name">Hajilo</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" id="progress"></div>
+                        </div>
+                        <div class="controls">
+                            <i class="fas fa-backward" id="prevBtn"></i>
+                            <i class="fas fa-play" id="playPauseBtn"></i>
+                            <i class="fas fa-forward" id="nextBtn"></i>
+                            <div class="volume-control">
+                                <i class="fas fa-volume-up" id="volumeIcon"></i>
+                                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const starCount = 50;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Rastgele pozisyon
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Rastgele animasyon süresi
+                const duration = 3 + Math.random() * 3;
+                star.style.animation = `twinkle ${duration}s infinite ${Math.random() * 3}s`;
+
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+
+        VanillaTilt.init(document.querySelector(".content-box"), {
+            max: 5,
+            speed: 400,
+            scale: 1.02,
+            glare: false
+        });
+
+        VanillaTilt.init(document.querySelector(".discord-status"), {
+            max: 5,
+            speed: 400,
+            scale: 1.02,
+            glare: false
+        });
+
+        VanillaTilt.init(document.querySelector(".music-player"), {
+            max: 5,
+            speed: 400,
+            scale: 1.02,
+            glare: false
+        });
+
+        VanillaTilt.init(document.querySelector(".skills-panel"), {
+            max: 5,
+            speed: 400,
+            scale: 1.02,
+            glare: false
+        });
+
+        const DISCORD_ID = "1251242341285630122";
+
+        async function fetchDiscordData() {
+            try {
+                const response = await fetch(`https://discordlookup.mesavirep.xyz/v1/user/${DISCORD_ID}`);
+                if (!response.ok) throw new Error("Discord verisi alınamadı.");
+
+                const data = await response.json();
+                document.getElementById("discord-avatar").src = `https://cdn.discordapp.com/avatars/${DISCORD_ID}/${data.avatar}.png`;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchDiscordData();
+
+        const audio = document.getElementById('bgMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const progress = document.getElementById('progress');
+        const volumeIcon = document.getElementById('volumeIcon');
+        let isPlaying = false;
+
+        // Sayfa yüklendiğinde otomatik oynat
+        window.addEventListener('load', () => {
+            audio.play()
+                .then(() => {
+                    isPlaying = true;
+                    playPauseBtn.classList.replace('fa-play', 'fa-pause');
+                })
+                .catch(error => {
+                    console.log("Otomatik oynatma engellendi:", error);
+                });
+        });
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                playPauseBtn.classList.replace('fa-pause', 'fa-play');
+            } else {
+                audio.play();
+                playPauseBtn.classList.replace('fa-play', 'fa-pause');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function updateProgress() {
+            const percent = (audio.currentTime / audio.duration) * 100;
+            progress.style.width = `${percent}%`;
+        }
+
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            audio.currentTime = (clickX / width) * duration;
+        }
+
+        function updateVolumeIcon() {
+            const volume = audio.volume;
+            if (volume > 0.5) {
+                volumeIcon.className = 'fas fa-volume-up';
+            } else if (volume > 0) {
+                volumeIcon.className = 'fas fa-volume-down';
+            } else {
+                volumeIcon.className = 'fas fa-volume-mute';
+            }
+        }
+
+        playPauseBtn.addEventListener('click', togglePlay);
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+            updateVolumeIcon();
+        });
+        audio.addEventListener('timeupdate', updateProgress);
+        document.querySelector('.progress-bar').addEventListener('click', setProgress);
+        volumeIcon.addEventListener('click', () => {
+            if (audio.volume > 0) {
+                audio.volume = 0;
+                volumeSlider.value = 0;
+            } else {
+                audio.volume = 0.5;
+                volumeSlider.value = 0.5;
+            }
+            updateVolumeIcon();
+        });
+    </script>
+</body>
+</html> 
