@@ -31,15 +31,17 @@ body {
 }
 
 .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    max-width: 600px;  /* Ana içerik genişliği */
+    max-width: 600px;
     padding: 20px;
-    position: relative;
 }
 
 .main-content {
-    width: 600px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
 }
 
 .content-box {
@@ -53,6 +55,7 @@ body {
     transform: perspective(1000px);
     will-change: transform;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .content-box > * {
@@ -89,6 +92,7 @@ h1 {
     color: rgba(255, 255, 255, 0.6);
     margin: 10px 0 20px 0;
     font-style: italic;
+    font-size: 14px;
 }
 
 .links {
@@ -528,12 +532,9 @@ h1 {
 }
 
 .skills-panel {
-    width: 250px;
-    position: fixed;
-    left: 50px;
-    top: auto;
-    bottom: 50px;
-    transform: none;
+    width: 100%;
+    position: relative;
+    margin-bottom: 20px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     padding: 20px;
@@ -691,49 +692,29 @@ h1 {
 /* Mobil uyumlu ayarlar */
 @media (max-width: 768px) {
     .container {
-        padding: 10px;  /* Daha az padding */
-    }
-
-    .main-content {
-        width: 100%;  /* Ana içeriği tam genişlikte yap */
-    }
-
-    .skills-panel {
-        width: 100%;  /* Sol paneli tam genişlikte yap */
-        position: relative;  /* Sabit pozisyonu kaldır */
-        bottom: auto;  /* Alt mesafeyi kaldır */
-        margin-bottom: 20px;  /* Alt boşluk ekle */
-    }
-
-    .content-box {
-        padding: 10px;  /* İçerik kutusunun padding'ini azalt */
+        padding: 10px;
     }
 
     .skills-text {
-        font-size: 14px;  /* Yazı boyutunu küçült */
-    }
-
-    .links {
-        flex-direction: column;  /* Linkleri dikey hizala */
-        gap: 10px;  /* Boşluğu artır */
+        font-size: 14px;
     }
 
     .link-button {
-        width: 40px;  /* Düğme genişliğini azalt */
-        height: 40px;  /* Düğme yüksekliğini azalt */
+        width: 40px;
+        height: 40px;
     }
 
     .profile-img {
-        width: 50px;  /* Profil resmini küçült */
-        height: 50px;  /* Profil resmini küçült */
+        width: 50px;
+        height: 50px;
     }
 
     h1 {
-        font-size: 18px;  /* Başlık boyutunu küçült */
+        font-size: 18px;
     }
 
     .bio-text {
-        font-size: 14px;  /* Biyografi metnini küçült */
+        font-size: 14px;
     }
 }
 
