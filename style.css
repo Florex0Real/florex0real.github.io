@@ -31,17 +31,15 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
-    max-width: 600px;
+    max-width: 600px;  /* Ana içerik genişliği */
     padding: 20px;
+    position: relative;
 }
 
 .main-content {
-    width: 100%;
-    margin: 0;
+    width: 600px;
+    margin: 0 auto;
 }
 
 .content-box {
@@ -55,7 +53,6 @@ body {
     transform: perspective(1000px);
     will-change: transform;
     transition: all 0.3s ease;
-    width: 100%;
 }
 
 .content-box > * {
@@ -92,7 +89,6 @@ h1 {
     color: rgba(255, 255, 255, 0.6);
     margin: 10px 0 20px 0;
     font-style: italic;
-    font-size: 14px;
 }
 
 .links {
@@ -532,10 +528,24 @@ h1 {
 }
 
 .skills-panel {
-    width: 100%;
-    position: relative;
-    margin-bottom: 20px;
-    text-align: center;
+    width: 250px;
+    position: fixed;
+    left: 50px;
+    top: auto;
+    bottom: 50px;
+    transform: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
+    transition: all 0.3s ease;
+}
+
+.skills-panel > * {
+    transform: translateZ(20px);
 }
 
 .skills-grid {
@@ -676,38 +686,5 @@ h1 {
 .tech-tag:hover {
     background: rgba(29, 185, 84, 0.3);
     transform: translateY(-2px);
-}
-
-/* Mobil uyumlu ayarlar */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-
-    .skills-text {
-        font-size: 14px;
-    }
-
-    .link-button {
-        width: 40px;
-        height: 40px;
-    }
-
-    .profile-img {
-        width: 50px;
-        height: 50px;
-    }
-
-    h1 {
-        font-size: 18px;
-    }
-
-    .bio-text {
-        font-size: 14px;
-    }
-
-    .skills-panel {
-        margin-top: 20px;
-    }
-}
+} 
 
