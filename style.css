@@ -535,18 +535,7 @@ h1 {
     width: 100%;
     position: relative;
     margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 20px;
-    backdrop-filter: blur(10px);
-    transform-style: preserve-3d;
-    perspective: 1000px;
-    will-change: transform;
-    transition: all 0.3s ease;
-}
-
-.skills-panel > * {
-    transform: translateZ(20px);
+    text-align: center;
 }
 
 .skills-grid {
@@ -715,6 +704,10 @@ h1 {
 
     .bio-text {
         font-size: 14px;
+    }
+
+    .skills-panel {
+        margin-top: 20px;
     }
 }
 
