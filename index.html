@@ -16,12 +16,12 @@
         <div class="main-content">
             <div class="content-box" data-tilt data-tilt-max="5" data-tilt-speed="400">
                 <div class="banner">
-                    COOL ASS BIO
+                    Florex
                 </div>
                 
                 <img src="img/mio.jpeg" alt="Profil Fotoğrafı" class="profile-img">
-                <h1>Florex</h1>
-                <p class="bio-text">Im Not A Gooner</p>
+                <h1>About Me</h1>
+                <p class="bio-text">Hi, I'm Florex, a Frontend Developer from Türkiye, always eager to improve my skills and knowledge. Feel free to contact me for collaboration or questions.</p>
                 
                 <div class="links">
                     <a href="#" class="link-button">
@@ -32,6 +32,12 @@
                     </a>
                     <a href="https://open.spotify.com/user/31lq2s2amihntqdqeqiaitlrnpia?si=49661b5ade4b4a32" target="_blank" class="link-button">
                         <img src="img/spotify.png" alt="Spotify" class="icon">
+                    </a>
+                    <a href="https://github.com/florex0real" target="_blank" class="link-button">
+                        <img src="img/github.png" alt="GitHub" class="icon">
+                    </a>
+                    <a href="https://www.tiktok.com/@florex0real" target="_blank" class="link-button">
+                        <img src="img/tiktok.png" alt="TikTok" class="icon">
                     </a>
                 </div>
             </div>
@@ -49,46 +55,13 @@
                     </a>
                 </div>
                 
-                <div class="music-player">
+                <div class="discord-status" data-tilt data-tilt-max="5" data-tilt-speed="400">
                     <div class="status-header">
-                        <i class="fas fa-music"></i>
-                        <span>Now Playing</span>
-                    </div>
-                    <div class="player-content">
-                        <audio id="bgMusic" loop>
-                            <source src="music/lofi.mp3" type="audio/mp3">
-                        </audio>
-                        <div class="song-info">
-                            <img src="https://static.zerochan.net/K-ON%21.full.271920.jpg" alt="Album Art" class="album-art">
-                            <div class="track-details">
-                                <div class="song-name">Watashi no Koi Wa HOTCHKISS | K-ON! Remix by Hajilo | lofi</div>
-                                <div class="artist-name">Hajilo</div>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress" id="progress"></div>
-                        </div>
-                        <div class="controls">
-                            <i class="fas fa-backward" id="prevBtn"></i>
-                            <i class="fas fa-play" id="playPauseBtn"></i>
-                            <i class="fas fa-forward" id="nextBtn"></i>
-                            <div class="volume-control">
-                                <i class="fas fa-volume-up" id="volumeIcon"></i>
-                                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Skills Panel -->
-                <div class="skills-panel" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                    <div class="status-header">
-                        <i class="fas fa-code"></i>
-                        <span>Skills</span>
+                        <i class="fas fa-heart"></i>
+                        <span>Hobbies</span>
                     </div>
                     <div class="skills-text">
-                        <span>HTML</span> • <span>CSS</span> • <span>JavaScript</span><br>
-                        <span>Python</span>
+                        <span>I love watching K-ON and Bocchi The Rock</span> <br> <span>I love playing Bass</span><br>
                     </div>
                 </div>
             </div>
@@ -131,13 +104,6 @@
             glare: false
         });
 
-        VanillaTilt.init(document.querySelector(".music-player"), {
-            max: 5,
-            speed: 400,
-            scale: 1.02,
-            glare: false
-        });
-
         VanillaTilt.init(document.querySelector(".skills-panel"), {
             max: 5,
             speed: 400,
@@ -160,77 +126,6 @@
         }
 
         fetchDiscordData();
-
-        const audio = document.getElementById('bgMusic');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const progress = document.getElementById('progress');
-        const volumeIcon = document.getElementById('volumeIcon');
-        let isPlaying = false;
-
-        // Sayfa yüklendiğinde otomatik oynat
-        window.addEventListener('load', () => {
-            audio.play()
-                .then(() => {
-                    isPlaying = true;
-                    playPauseBtn.classList.replace('fa-play', 'fa-pause');
-                })
-                .catch(error => {
-                    console.log("Otomatik oynatma engellendi:", error);
-                });
-        });
-
-        function togglePlay() {
-            if (isPlaying) {
-                audio.pause();
-                playPauseBtn.classList.replace('fa-pause', 'fa-play');
-            } else {
-                audio.play();
-                playPauseBtn.classList.replace('fa-play', 'fa-pause');
-            }
-            isPlaying = !isPlaying;
-        }
-
-        function updateProgress() {
-            const percent = (audio.currentTime / audio.duration) * 100;
-            progress.style.width = `${percent}%`;
-        }
-
-        function setProgress(e) {
-            const width = this.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audio.duration;
-            audio.currentTime = (clickX / width) * duration;
-        }
-
-        function updateVolumeIcon() {
-            const volume = audio.volume;
-            if (volume > 0.5) {
-                volumeIcon.className = 'fas fa-volume-up';
-            } else if (volume > 0) {
-                volumeIcon.className = 'fas fa-volume-down';
-            } else {
-                volumeIcon.className = 'fas fa-volume-mute';
-            }
-        }
-
-        playPauseBtn.addEventListener('click', togglePlay);
-        volumeSlider.addEventListener('input', (e) => {
-            audio.volume = e.target.value;
-            updateVolumeIcon();
-        });
-        audio.addEventListener('timeupdate', updateProgress);
-        document.querySelector('.progress-bar').addEventListener('click', setProgress);
-        volumeIcon.addEventListener('click', () => {
-            if (audio.volume > 0) {
-                audio.volume = 0;
-                volumeSlider.value = 0;
-            } else {
-                audio.volume = 0.5;
-                volumeSlider.value = 0.5;
-            }
-            updateVolumeIcon();
-        });
     </script>
 </body>
 </html> 
