@@ -157,7 +157,7 @@ h1 {
     max-width: 600px;
 }
 
-.discord-status, .spotify-player {
+.discord-status, .spotify-player .hobi-box {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     padding: 15px;
@@ -531,9 +531,7 @@ h1 {
     width: 250px;
     position: fixed;
     left: 50px;
-    top: auto;
     bottom: 50px;
-    transform: none;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     padding: 20px;
@@ -542,6 +540,12 @@ h1 {
     perspective: 1000px;
     will-change: transform;
     transition: all 0.3s ease;
+}
+
+/* Hobbies paneli üzerine gelindiğinde animasyon */
+.skills-panel:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Mobile view (for small screens) */
@@ -563,7 +567,6 @@ h1 {
         padding: 10px;
     }
 }
-
 
 .skills-panel > * {
     transform: translateZ(20px);
@@ -708,3 +711,79 @@ h1 {
     background: rgba(29, 185, 84, 0.3);
     transform: translateY(-2px);
 } 
+
+.hobi-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transform: perspective(1000px);
+    will-change: transform;
+    transition: all 0.3s ease;
+}
+
+.hobi-box > * {
+    transform: translateZ(20px);
+}
+
+.projects-content {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8); /* Yazı rengi */
+}
+
+.projects-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.project-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s;
+}
+
+.project-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.project-icon {
+    width: 50px; /* İkon boyutu */
+    height: 50px; /* İkon boyutu */
+    margin-right: 15px; /* İkon ile metin arasındaki boşluk */
+}
+
+.project-item h3 {
+    margin: 0;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9); /* Yazı rengi */
+}
+
+.project-item p {
+    margin: 5px 0 0 0;
+    color: rgba(255, 255, 255, 0.7); /* Açıklama rengi */
+}
+
+.discord-status, .projects-panel {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    margin-top: 15px; /* Üstten boşluk */
+    transition: all 0.3s ease; /* Pürüzsüz geçiş için */
+}
+
+/* Discord ve Projeler paneli üzerine gelindiğinde animasyon */
+.discord-status:hover, .projects-panel:hover {
+    transform: scale(1.05); /* Paneli biraz büyüt */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Gölge ekle */
+} 
+    
