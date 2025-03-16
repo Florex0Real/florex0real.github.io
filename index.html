@@ -8,6 +8,28 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        .skills-panel {
+            width: 250px;
+            position: fixed;
+            left: 50px;
+            bottom: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            will-change: transform;
+            transition: all 0.3s ease; /* Pürüzsüz geçiş için */
+        }
+
+        /* Hobbies paneli üzerine gelindiğinde animasyon */
+        .skills-panel:hover {
+            transform: scale(1.05); /* Paneli biraz büyüt */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Gölge ekle */
+        }
+    </style>
 </head>
 <body>
     <div class="stars"></div>
@@ -23,45 +45,27 @@
                 <h1>About Me</h1>
                 <p class="bio-text">Hi, I'm Florex, a Frontend Developer from Türkiye, always eager to improve my skills and knowledge. Feel free to contact me for collaboration or questions.</p>
                 
-                <div class="links">
-                    <a href="#" class="link-button">
-                        <img src="img/instagram.png" alt="Instagram" class="icon">
-                    </a>
-                    <a href="#" class="link-button">
-                        <img src="img/steam.png" alt="Steam" class="icon">
-                    </a>
-                    <a href="https://open.spotify.com/user/31lq2s2amihntqdqeqiaitlrnpia?si=49661b5ade4b4a32" target="_blank" class="link-button">
-                        <img src="img/spotify.png" alt="Spotify" class="icon">
-                    </a>
-                    <a href="https://github.com/florex0real" target="_blank" class="link-button">
-                        <img src="img/github.png" alt="GitHub" class="icon">
-                    </a>
-                    <a href="https://www.tiktok.com/@florex0real" target="_blank" class="link-button">
-                        <img src="img/tiktok.png" alt="TikTok" class="icon">
-                    </a>
-                </div>
-            </div>
-            
-            <div class="status-container">
-                <!-- Discord Status -->
-                <div class="discord-status">
-                    <div class="status-header">
-                        <img src="img/discord.png" alt="Discord" class="discord-logo">
-                    </div>
-                    <a href="https://discord.com/users/1251242341285630122" target="_blank" class="discord-profile">
-                        <img id="discord-avatar" src="img/mio.jpeg" alt="Discord Avatar">
-                        <span class="username">florex0real</span>
-                        <span class="status online"></span>
-                    </a>
-                </div>
-                
-                <div class="discord-status" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                    <div class="status-header">
-                        <i class="fas fa-heart"></i>
-                        <span>Hobbies</span>
-                    </div>
-                    <div class="skills-text">
-                        <span>I love watching K-ON and Bocchi The Rock</span> <br> <span>I love playing Bass</span><br>
+                <div class="status-container">
+                    <!-- Sosyal Medya Linkleri -->
+                    <div class="links">
+                        <a href="#" class="link-button">
+                            <img src="img/instagram.png" alt="Instagram" class="icon">
+                        </a>
+                        <a href="#" class="link-button">
+                            <img src="img/steam.png" alt="Steam" class="icon">
+                        </a>
+                        <a href="https://open.spotify.com/user/31lq2s2amihntqdqeqiaitlrnpia?si=49661b5ade4b4a32" target="_blank" class="link-button">
+                            <img src="img/spotify.png" alt="Spotify" class="icon">
+                        </a>
+                        <a href="https://github.com/florex0real" target="_blank" class="link-button">
+                            <img src="img/github.png" alt="GitHub" class="icon">
+                        </a>
+                        <a href="https://www.tiktok.com/@florex0real" target="_blank" class="link-button">
+                            <img src="img/tiktok.png" alt="TikTok" class="icon">
+                        </a>
+                        <a href="https://discord.com/users/1251242341285630122" target="_blank" class="link-button">
+                            <img src="img/discord.png" alt="Discord" class="icon">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -91,20 +95,6 @@
         createStars();
 
         VanillaTilt.init(document.querySelector(".content-box"), {
-            max: 5,
-            speed: 400,
-            scale: 1.02,
-            glare: false
-        });
-
-        VanillaTilt.init(document.querySelector(".discord-status"), {
-            max: 5,
-            speed: 400,
-            scale: 1.02,
-            glare: false
-        });
-
-        VanillaTilt.init(document.querySelector(".skills-panel"), {
             max: 5,
             speed: 400,
             scale: 1.02,
