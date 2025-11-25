@@ -3,82 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Florex</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>İşletme Bilimi - Şirket Türleri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f7fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+        }
+        
+        .category-section {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        
+        .category-header {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .category-desc {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 25px;
+            padding-left: 15px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .company-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #3498db;
+            transition: all 0.3s;
+        }
+        
+        .company-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .company-card h3 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .company-type-badge {
+            font-size: 0.5em;
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+        
+        .section-title {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+        
+        .features, .steps {
+            padding-left: 20px;
+        }
+        
+        .features li, .steps li {
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+        
+        .features li strong {
+            color: #2980b9;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #856404;
+        }
+        
+        .warning-box {
+            background: #fff9e6;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box h4 {
+            color: #f39c12;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+        
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .req-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .category-section {
+                padding: 25px 20px;
+            }
+            
+            .company-card {
+                padding: 20px;
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="header">
+        <h1>📚 İşletme Bilimi - Şirket Türleri</h1>
+        <p>Türk Ticaret Kanunu'na Göre Şirket Yapıları ve Kuruluş Süreçleri</p>
+    </div>
+    
     <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="avatar">
-                <img src="assets/mimikyu.png" alt="Florex">
-            </div>
-            <h1 class="name">Florex</h1>
-            <div class="role-tag">Developer</div>
+        <!-- ŞAHIS ŞİRKETLERİ -->
+        <div class="category-section">
+            <div class="category-header">1️⃣ ŞAHIS ŞİRKETLERİ</div>
+            <p class="category-desc">Kurucunun sorumluluğu yüksek, karar alma süreci hızlıdır.</p>
             
-            <div class="divider"></div>
-            
-            <div class="info-item">
-                <i class="fas fa-birthday-cake"></i>
-                <div class="label">
-                    <span class="label">BIRTHDAY</span>
-                    <span class="value">September 15, 2006</span>
-                </div>
+            <!-- ADİ ŞİRKET -->
+            <div class="company-card">
+                <h3>a) Adi Şirket</h3>
+                
+                <div class="section-title">✨ Özellikleri</div>
+                <ul class="features">
+                    <li>En basit şirket türüdür</li>
+                    <li><strong>En az 2 kişiyle</strong> kurulur</li>
+                    <li>Ortaklar <span class="highlight">sınırsız sorumludur</span> (şirket borçlarına kendi mal varlıklarıyla da sorumludur)</li>
+                    <li>Vergisel olarak ayrı bir tüzel kişilik değildir</li>
+                </ul>
+                
+                <div class="section-title">📋 Nasıl Açılır?</div>
+                <ol class="steps">
+                    <li>Resmî şirket kuruluşu yoktur</li>
+                    <li>Ortaklar arasında adi ortaklık sözleşmesi hazırlanır</li>
+                    <li>Notere gidip onaylatılır</li>
+                    <li>Vergi dairesine stopaj ve KDV için mükellefiyet açılır</li>
+                    <li>Banka hesabı isteğe bağlıdır</li>
+                </ol>
             </div>
             
-            <div class="info-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <span class="label">LOCATION</span>
-                    <span class="value">Bursa, Turkey</span>
-                </div>
+            <!-- KOLEKTİF ŞİRKET -->
+            <div class="company-card">
+                <h3>b) Kolektif Şirket</h3>
+                
+                <div class="section-title">✨ Özellikleri</div>
+                <ul class="features">
+                    <li><strong>En az 2 gerçek kişi</strong> ile kurulur</li>
+                    <li>Ortakların <span class="highlight">tam sorumluluğu</span> vardır</li>
+                    <li>Yönetim tüm ortaklardadır</li>
+                </ul>
+                
+                <div class="section-title">📋 Nasıl Açılır?</div>
+                <ol class="steps">
+                    <li>Ticaret Sicil Müdürlüğü'ne gidilir</li>
+                    <li>Sözleşme hazırlanır, ticaret unvanı alınır</li>
+                    <li>Vergi dairesi kaydı yapılır</li>
+                    <li>Oda kaydı (ticaret odası) yapılır</li>
+                </ol>
             </div>
             
-            <div class="social-links">
-                <a href="https://github.com/Florex0Real" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.instagram.com/buraktooreal/" class="social-link">
-                    <i class="fab fa-instagram"></i>
-                </a>
+            <!-- KOMANDİT ŞİRKET -->
+            <div class="company-card">
+                <h3>c) Komandit Şirket</h3>
+                
+                <div class="section-title">✨ Özellikleri</div>
+                <ul class="features">
+                    <li><strong>En az 2 ortak</strong> ile kurulur:</li>
+                    <li style="margin-left: 20px;"><strong>Komandite ortak:</strong> sınırsız sorumlu</li>
+                    <li style="margin-left: 20px;"><strong>Komanditer ortak:</strong> koyduğu sermaye kadar sorumlu</li>
+                    <li>Daha çok aile işi gibi yerlerde kullanılır</li>
+                </ul>
+                
+                <div class="section-title">📋 Nasıl Açılır?</div>
+                <ol class="steps">
+                    <li>Ticaret Sicili'nde kuruluş yapılır</li>
+                    <li>Sözleşme hazırlanır</li>
+                    <li>Vergi dairesi kaydı ve oda kaydı yapılır</li>
+                </ol>
             </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- About Me Section -->
-            <section class="about-section">
-                <h2>About Me</h2>
-                <div class="underline"></div>
-                <p>
-                    I'm a frontend developer. I don't know where the world is headed, but the one thing I do know is that I have to improve myself as much as I can. You can write to me for collaboration or questions, but you'll most likely find me staring at a blank screen, wondering, “What's the point of it all?”
-
-            </section>
-
-            <!-- My Projects Section -->
-            <section class="projects-section">
-                <h2>My Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-icon">
-                            <i class="fas fa-terminal"></i>
-                        </div>
-                        <a href="https://github.com/Florex0Real/linux-system-manager">Linux System Manager</a>
-                        <p>Modern Linux system management tool with GUI and TUI interfaces</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Footer -->
-<!-- Footer -->
-<footer class="footer">
-    <p>&copy; 2025 Florex. Inspired by <a href="https://github.com/iWishkem">iWishkem</a>.</p> 
-</footer>
-
-
-
-    <script src="script.js"></script>
+        </div>
+        
+        <!-- SERMAYE ŞİRKETLERİ -->
+        <div class="category-section">
+            <div class="category-header">2️⃣ SERMAYE ŞİRKETLERİ</div>
+            <p class="category-desc">Sorumluluk sadece koyulan sermaye ile sınırlıdır. Kurumsal ve profesyonel yapıya uygundur.</p>
+            
+            <!-- LİMİTED ŞİRKET -->
+            <div class="company-card" style="border-left-color: #27ae60;">
+                <h3>a) Limited Şirket <span class="company-type-badge" style="background: #27ae60;">LTD</span></h3>
+                
+                <div class="section-title">✨ Özellikleri</div>
+                <ul class="features">
+                    <li><strong>En çok tercih edilen</strong> şirket türüdür</li>
+                    <li><span class="highlight">1 kişiyle kurulabilir</span></li>
+                    <li>Sorumluluk sınırlıdır (şirket borçlarından ortak değil, şirket sorumludur)</li>
+                    <li><strong>Asgari sermaye:</strong> 10.000 TL</li>
+                    <li><strong>Vergi oranı:</strong> %25 kurumlar vergisi</li>
+                </ul>
+                
+                <div class="section-title">📋 Nasıl Açılır?</div>
+                <ol class="steps">
+                    <li>MERSİS üzerinden şirket sözleşmesi hazırlanır</li>
+                    <li>Ticaret Sicil Müdürlüğü'ne başvuru yapılır</li>
+                    <li>Sermayenin %0,04'lük kısmı Rekabet Kurumu'na yatırılır</li>
+                    <li>Noter imza beyannamesi hazırlanır</li>
+                    <li>Vergi dairesi yoklaması yapılır</li>
+                    <li>Şirket resmi olarak açılır</li>
+                    <li>Banka hesabı açılır</li>
+                </ol>
+            </div>
+            
+            <!-- ANONİM ŞİRKET -->
+            <div class="company-card" style="border-left-color: #e74c3c;">
+                <h3>b) Anonim Şirket <span class="company-type-badge" style="background: #e74c3c;">A.Ş.</span></h3>
+                
+                <div class="section-title">✨ Özellikleri</div>
+                <ul class="features">
+                    <li><strong>Büyük ölçekli işler</strong> içindir</li>
+                    <li><span class="highlight">1 kişiyle kurulabilir</span></li>
+                    <li>Hisseler kolay devredilir</li>
+                    <li><strong>Asgari sermaye:</strong> 50.000 TL</li>
+                    <li>Yönetime <strong>"Yönetim Kurulu"</strong> bakar</li>
+                </ul>
+                
+                <div class="section-title">📋 Nasıl Açılır?</div>
+                <ol class="steps">
+                    <li>MERSİS'te sözleşme hazırlanır</li>
+                    <li>Ticaret Sicil Müdürlüğü'ne başvuru yapılır</li>
+                    <li>Bankada sermayenin en az %25'i blokeli olarak yatırılır</li>
+                    <li>Yönetim kurulu oluşturulur</li>
+                    <li>Vergi dairesi yoklaması yapılır</li>
+                    <li>Ticaret Sicil ilanı yayınlanır</li>
+                    <li>Şirket faaliyete başlar</li>
+                </ol>
+            </div>
+            
+            <!-- KOOPERATİF -->
+            <div class="company-card" style="border-left-color: #f39c12;">
+                <h3>c) Kooperatif</h3>
+                
+                <div class="section-title">✨ Özellikleri</div>
+                <ul class="features">
+                    <li><strong>En az 7 ortakla</strong> kurulur</li>
+                    <li>Kar amacı sınırlıdır</li>
+                    <li>Ortakların dayanışması esas alınır</li>
+                    <li>Örnekler: site yönetimleri, tarım kooperatifleri</li>
+                </ul>
+                
+                <div class="section-title">📋 Nasıl Açılır?</div>
+                <ol class="steps">
+                    <li>En az 7 kişi bir araya gelir</li>
+                    <li>Kuruluş sözleşmesi hazırlanır</li>
+                    <li>Ticaret Sicili kaydı yapılır</li>
+                    <li>Vergi dairesine kayıt yapılır</li>
+                </ol>
+            </div>
+        </div>
+        
+        <!-- GENEL GEREKSINIMLER -->
+        <div class="warning-box">
+            <h4>📌 GENEL OLARAK ŞİRKET AÇMAK İÇİN GEREKENLER</h4>
+            <div class="requirements-grid">
+                <div class="req-item">📄 Kimlik</div>
+                <div class="req-item">🏠 İkametgâh belgesi</div>
+                <div class="req-item">📍 Şirket adresi</div>
+                <div class="req-item">📝 Kira kontratı/Tapu</div>
+                <div class="req-item">✍️ Noter imza beyannamesi</div>
+                <div class="req-item">💰 Sermaye beyanı</div>
+                <div class="req-item">💻 MERSİS'te sözleşme</div>
+                <div class="req-item">🏢 Ticaret Odası kaydı</div>
+                <div class="req-item">🧾 Vergi dairesi yoklaması</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p><strong>⚠️ Önemli Not:</strong> Bu bilgiler işletme bilimi ve Türk Ticaret Kanunu'na göre hazırlanmıştır.</p>
+        <p>Güncel mevzuat ve detaylar için mutlaka resmi kaynaklara başvurunuz.</p>
+    </div>
 </body>
 </html>
